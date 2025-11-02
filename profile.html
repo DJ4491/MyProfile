@@ -1,63 +1,279 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Profile</title>
-    <link rel="stylesheet" href="profile.css">
-    <div id="div1">
-        <h1 id="Heading1">Dhruv's Profile</h1>
-    </div>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Dhruv Joshi — Profile</title>
+  <meta name="description" content="Dhruv Joshi — student & aspiring software engineer. Skills: C, C++, C#, OS, DSA, web dev.">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    /* Reset & variables */
+    :root{
+      --bg:#0f1724;
+      --card:#0b1220;
+      --muted:#9aa4b2;
+      --accent1:#5eead4;
+      --accent2:#60a5fa;
+      --glass: rgba(255,255,255,0.04);
+      --radius:14px;
+      --maxw:1100px;
+      --glass-2: rgba(255,255,255,0.02);
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%;}
+    body{
+      margin:0;
+      font-family:Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      background: linear-gradient(180deg,#071028 0%, #071827 40%, #041023 100%);
+      color:#e6eef5;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      padding:48px 20px;
+      display:flex;
+      justify-content:center;
+      align-items:flex-start;
+      gap:24px;
+      min-height:100vh;
+    }
 
+    .wrap{
+      width:100%;
+      max-width:var(--maxw);
+      margin:0 auto;
+    }
+
+    /* Card */
+    .profile-card{
+      display:grid;
+      grid-template-columns:320px 1fr;
+      gap:28px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      border-radius:var(--radius);
+      padding:28px;
+      box-shadow: 0 6px 30px rgba(2,6,23,0.7), inset 0 1px 0 rgba(255,255,255,0.02);
+      border:1px solid rgba(255,255,255,0.03);
+      align-items:start;
+    }
+
+    /* Left column */
+    .profile-left{
+      display:flex;
+      flex-direction:column;
+      gap:18px;
+    }
+    .avatar{
+      width:100%;
+      border-radius:12px;
+      overflow:hidden;
+      background:linear-gradient(135deg,var(--accent1),var(--accent2));
+      padding:6px;
+    }
+    .avatar img{
+      display:block;
+      width:100%;
+      height:auto;
+      aspect-ratio:1/1;
+      object-fit:cover;
+      border-radius:10px;
+      filter:contrast(1.05) saturate(1.03);
+      background:var(--glass-2);
+    }
+
+    .info-list{
+      background:var(--glass);
+      padding:12px;
+      border-radius:10px;
+      font-size:14px;
+      color:var(--muted);
+      border:1px solid rgba(255,255,255,0.02);
+    }
+    .info-list dt{font-weight:600;color:#fff}
+    .info-list dd{margin:6px 0 12px 0}
+
+    .skills{
+      display:flex;
+      gap:8px;
+      flex-wrap:wrap;
+    }
+    .skill{
+      background:linear-gradient(90deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      padding:8px 10px;
+      border-radius:999px;
+      font-size:13px;
+      border:1px solid rgba(255,255,255,0.025);
+      color:var(--muted);
+    }
+
+    .contact{display:flex;flex-direction:column;gap:8px}
+    .contact a{color:var(--accent2);text-decoration:none;font-weight:600}
+
+    /* Right column */
+    .profile-main{
+      display:flex;
+      flex-direction:column;
+      gap:18px;
+    }
+
+    .header{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:12px;
+    }
+
+    .name{
+      font-size:28px;
+      font-weight:700;
+      margin:0;
+      letter-spacing:-0.2px;
+    }
+    .role{color:var(--muted);font-weight:600}
+
+    .actions{display:flex;gap:10px}
+    .btn{
+      background:transparent;
+      border:1px solid rgba(255,255,255,0.06);
+      padding:8px 14px;
+      border-radius:10px;
+      cursor:pointer;
+      color:var(--accent2);
+      font-weight:700;
+      text-decoration:none;
+    }
+    .btn.primary{
+      background:linear-gradient(90deg,var(--accent1),var(--accent2));
+      color:#041023;
+      border:none;
+      box-shadow:0 6px 18px rgba(96,165,250,0.12);
+    }
+
+    .summary{color:var(--muted);line-height:1.5}
+
+    .card-section{
+      background:transparent;
+      padding:14px;
+      border-radius:10px;
+      border:1px solid rgba(255,255,255,0.02);
+    }
+
+    .stats{display:flex;gap:14px}
+    .stat{flex:1;background:var(--glass);padding:12px;border-radius:10px;text-align:center}
+    .stat strong{display:block;font-size:18px}
+    .stat small{color:var(--muted)}
+
+    .section-title{display:flex;align-items:center;gap:12px}
+    .section-title h3{margin:0}
+    .timeline{display:flex;flex-direction:column;gap:12px}
+    .timeline-item{padding:10px;border-radius:8px;background:linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.02));border:1px solid rgba(255,255,255,0.02)}
+    .timeline-item h4{margin:0 0 6px 0}
+    .muted{color:var(--muted);font-size:13px}
+
+    /* responsiveness */
+    @media (max-width:880px){
+      .profile-card{grid-template-columns:1fr;}
+      .avatar img{aspect-ratio:3/2}
+      .header{flex-direction:column;align-items:flex-start}
+      .actions{width:100%}
+    }
+
+    /* small accessibility focus states */
+    a:focus, button:focus{outline:3px solid rgba(96,165,250,0.18);outline-offset:3px}
+  </style>
 </head>
-
 <body>
-    <br>
-    <br>
-    <hr>
-    <br>
-    <img src="IIMF4785.JPEG" alt="">
-    <br>
-    <div id="div2">
-        <table>
-            <tr>
-                <th>Name</th>
-                <td>Dhruv Joshi</td>
-            </tr>
-            <tr>
-                <th>Age</th>
-                <td>17</td>
-            </tr>
-            <tr>
-                <th>D.O.B</th>
-                <td>26/04/2008</td>
-            </tr>
-            <tr>
-                <th>Qualifications</th>
-                <td>10th Pass</td>
-            </tr>
-        </table>
-    </div>
-    <br>
-    <hr>
-    <br>
-    <div id="div3">
-        <h2>
-            About Myself
-            <hr>
-        </h2>
-    </div>
-    <p>
-        I am Dhruv Joshi, a student at Government Polytechnic Dehradun, pursuing my diploma in engineering. Passionate
-        about technology, I spend most of my time exploring programming languages like C, C++, and C#. My interest lies
-        in operating systems, data structures, and web development, and I continuously strive to enhance my skills.<br>
+  <main class="wrap" role="main">
+    <article class="profile-card" aria-label="Dhruv Joshi profile card">
 
-        Apart from academics, I enjoy discussing gaming, tech trends, and performance optimization. I believe in
-        learning through hands-on experience and always look for ways to improve my coding and problem-solving
-        abilities. With a strong foundation in fundamentals and a keen eye for logic-building, I aim to excel in my
-        field and contribute meaningfully to the tech industry.
-    </p>
+      <!-- LEFT: avatar / basic info -->
+      <aside class="profile-left" aria-label="profile sidebar">
+        <figure class="avatar" aria-hidden="true">
+          <img src="IIMF4785.JPEG" alt="Dhruv Joshi portrait">
+        </figure>
+
+        <dl class="info-list" aria-label="basic info">
+          <dt>Name</dt>
+          <dd>Dhruv Joshi</dd>
+          <dt>Age</dt>
+          <dd>17</dd>
+          <dt>Date of Birth</dt>
+          <dd>26 April 2008</dd>
+          <dt>Qualifications</dt>
+          <dd>10th Pass</dd>
+        </dl>
+
+        <div class="card-section">
+          <div class="section-title"><h3 style="margin:0">Skills</h3></div>
+          <div class="skills" aria-hidden="false">
+            <span class="skill">C</span>
+            <span class="skill">C++</span>
+            <span class="skill">C#</span>
+            <span class="skill">Operating Systems</span>
+            <span class="skill">Data Structures</span>
+            <span class="skill">HTML/CSS</span>
+          </div>
+        </div>
+
+        <div class="card-section contact">
+          <div class="section-title"><h3 style="margin:0">Contact</h3></div>
+          <a href="#" aria-label="email">✉️ dhruv@example.com</a>
+          <a href="#" aria-label="github">🐱 github.com/yourusername</a>
+        </div>
+
+      </aside>
+
+      <!-- RIGHT: main content -->
+      <div class="profile-main">
+        <header class="header">
+          <div>
+            <h1 class="name">Dhruv Joshi</h1>
+            <div class="role">Student • Aspiring Software Engineer</div>
+          </div>
+
+          <div class="actions">
+            <a class="btn" href="#">Connect</a>
+            <a class="btn primary" href="#">Download CV</a>
+          </div>
+        </header>
+
+        <p class="summary">I am a diploma engineering student at Government Polytechnic Dehradun. I enjoy exploring programming languages like C, C++ and C#, and focus on operating systems, data-structures and web development. I prefer hands-on learning and solving problems that strengthen my fundamentals.</p>
+
+        <section class="card-section" aria-labelledby="stats-heading">
+          <div class="section-title"><h3 id="stats-heading">Quick stats</h3></div>
+          <div class="stats" role="list">
+            <div class="stat" role="listitem"><strong>2+</strong><small class="muted">Projects</small></div>
+            <div class="stat" role="listitem"><strong>—</strong><small class="muted">Experience</small></div>
+            <div class="stat" role="listitem"><strong>DSA</strong><small class="muted">Focus</small></div>
+          </div>
+        </section>
+
+        <section class="card-section" aria-labelledby="about-heading">
+          <div class="section-title"><h3 id="about-heading">About</h3></div>
+          <div class="timeline">
+            <div class="timeline-item">
+              <h4>About myself</h4>
+              <p class="muted">Passionate about technology, I spend most of my time exploring programming languages and building small projects. I like gaming and performance optimisation. I aim to build a strong foundation and contribute effectively in the software industry.</p>
+            </div>
+          </div>
+        </section>
+
+        <section class="card-section" aria-labelledby="edu-heading">
+          <div class="section-title"><h3 id="edu-heading">Education</h3></div>
+          <div class="timeline">
+            <div class="timeline-item">
+              <h4>Government Polytechnic Dehradun</h4>
+              <p class="muted">Diploma in Engineering — current</p>
+            </div>
+            <div class="timeline-item">
+              <h4>High School</h4>
+              <p class="muted">10th Pass</p>
+            </div>
+          </div>
+        </section>
+
+      </div>
+
+    </article>
+  </main>
 </body>
-
 </html>
